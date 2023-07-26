@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 
 import { Box, Typography, styled } from "@mui/material";
 
-import { useParams } from "react-router-dom";
+import { useParams  ,Link , useNavigate} from "react-router-dom";
 
 import { API } from "../../services/api.js";
 
@@ -61,6 +61,9 @@ const DetailView = () => {
 
   const { account } = useContext(DataContext);
 
+  const Navigate = useNavigate();
+
+
   const url =
     "https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80";
 
@@ -74,6 +77,16 @@ const DetailView = () => {
     fetchData();
   }, []);
 
+
+  const deletPost = async()=>{
+        const res = await API.deletPost(post._id);
+
+        if(res.isSuccess){
+           Navigate('/')
+        }
+
+  }
+
   return (
     <Container>
       <Image src={post.picture ? post.picture : url} alt="blog" />
@@ -82,8 +95,10 @@ const DetailView = () => {
         {account.username === post.username && (
           <>
             {" "}
+            <Link to={`/update/${post._id}`} >
             <Editicon color="primary" />
-            <Deleticon color="error" />
+            </Link>
+            <Deleticon onClick={()=>deletPost()}  color="error" />
           </>
         )}
       </Box>
