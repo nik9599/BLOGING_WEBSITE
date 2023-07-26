@@ -12,9 +12,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { DataContext } from "../../context/DataProvider.jsx";
 
-const Container = styled(Box)`
-  margin: 70px 100px;
-`;
+const Container = styled(Box)(({theme})=>({
+  margin: '70px 100px',
+  [theme.breakpoints.down('md')]:{
+    margin : 0
+  }
+}));
+ 
 
 const Image = styled("img")({
   width: "100%",
