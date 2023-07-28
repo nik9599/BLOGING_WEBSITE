@@ -20,7 +20,7 @@ export const Post = () => {
       let resposne = await API.getAllPost({category : category || ''});
       if (resposne.isSuccess) {
         setPost(resposne.data);
-        console.log(posts);
+        
       }
     };
     fetchDate();

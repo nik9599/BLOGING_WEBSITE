@@ -98,7 +98,7 @@ const Login = ({ isUserAuthenticated }) => {
 
   const signUpUser = async () => {
     let response = await API.userSignup(signup);
-    console.log(response.isSuccess);
+    
     if (response.isSuccess) {
       setError("");
       setSignUp(UserData);
@@ -110,7 +110,7 @@ const Login = ({ isUserAuthenticated }) => {
 
   const loginUser = async () => {
     let response = await API.userLogin(login);
-    // let response = await loginuser(login)
+   
     console.log(response.isSuccess);
     if (response.isSuccess) {
       setError("");

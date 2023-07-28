@@ -34,6 +34,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", Routes);
 
-app.listen("5000", () => {
+const Port = process.env.PORT || 5000;
+
+app.listen(Port, () => {
   console.log("Server intialise properly");
 });
