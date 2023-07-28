@@ -12,6 +12,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { DataContext } from "../../context/DataProvider.jsx";
 
+import Comment from './comments/Comments.jsx';
+
 const Container = styled(Box)(({theme})=>({
   margin: '70px 100px',
   [theme.breakpoints.down('md')]:{
@@ -118,6 +120,9 @@ const DetailView = () => {
       </Author>
 
       <Description >{post.descritption}</Description>
+
+     <Comment post = {post} />
+
     </Container>
   );
 };

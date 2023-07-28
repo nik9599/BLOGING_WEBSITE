@@ -8,6 +8,8 @@ import {creatPost , getAllPost , getPost , updatePost , deletPost} from "../Cont
 
 import { authenticateToken } from "../Controller/jwt-controller.js";
 
+import {newComment , getComments , deletComment} from "../Controller/comment-controller.js"
+
 // importing midelwware function
 
 import upload from "../utils/upload.js";
@@ -23,5 +25,7 @@ Routes.get('/posts' , authenticateToken , getAllPost)
 Routes.get('/post/:id' , authenticateToken , getPost)
 Routes.put('/update/:id' , authenticateToken , updatePost)
 Routes.delete('/delet/:id' , authenticateToken , deletPost)
-
+Routes.post('/comment/new' , authenticateToken , newComment)
+Routes.get('/comments/:id' , authenticateToken , getComments)
+Routes.delete('/comment/delet/:id' , authenticateToken , deletComment)
 export default Routes;
