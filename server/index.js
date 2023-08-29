@@ -13,8 +13,8 @@ connection();
 
 app.use(cors(
   {
-    origin :['https://bloging-website-frontend.vercel.app'],
-    methods :["POST","GET","DELET","UPDATE"],
+    origin :["https://bloging-website-frontend.vercel.app"],
+    methods :["POST","GET"],
     credentials : true
   }
 ));
