@@ -11,7 +11,13 @@ connection();
 
 //setting up routes
 
-app.use(cors());
+app.use(cors(
+  {
+    origin :['https://bloging-website-frontend.vercel.app/login'],
+    methods :["POST","GET","DELET","UPDATE"],
+    credentials : true
+  }
+));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
