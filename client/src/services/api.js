@@ -2,8 +2,8 @@ import axios from "axios";
 import { API_NOTIFICATION_MESSAGES, SERVICE_URLS } from "../constants/configs";
 import { getAccessToken , getType} from "../utils/common-function";
 
-// const API_URL = 'https://bloging-website-api.vercel.app/';
-const API_URL = 'http://localhost:5000/'
+const API_URL = 'https://bloging-website-api.vercel.app/';
+// const API_URL = 'http://localhost:5000/'
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
