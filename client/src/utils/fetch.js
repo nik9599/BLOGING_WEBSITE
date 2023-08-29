@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 
-const baseURL = "https://bloging-website-api.vercel.app/login";
+const baseURL = "https://bloging-website-api.vercel.app/login/";
 
 export const logginUser = async (data)=>{
     try{
