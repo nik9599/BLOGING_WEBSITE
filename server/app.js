@@ -26,9 +26,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/',()=>{
-  res.json('Hello')
-})
+
 
 app.use("/", Routes);
 
