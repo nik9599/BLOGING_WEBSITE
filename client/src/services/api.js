@@ -85,11 +85,7 @@ for (const[key, value] of Object.entries(SERVICE_URLS)) {
       responseType: value.responseType,
       headers:{
         authorization : getAccessToken(),
-        key :'Access-Control-Allow-Credentials', value :'true',
-        key :'Access-Control-Allow-Origin', value :'*',
-        key :'Access-Control-Allow-Methods', value :'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-        key :'Access-Control-Allow-Headers', value :'X-CSFR-Token,X-Requested-With,Accept,Accept-Version,Content-Length, Conten-MDS , Content-Type, Date',
-
+       
       },
       TYPE : getType(value , body),
       onUploadProgress: (progressEvent) => {
