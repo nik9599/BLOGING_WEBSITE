@@ -38,3 +38,5 @@ const Port = process.env.PORT || 5000;
 app.listen(Port, () => {
   console.log("Server intialise properly");
 });
+
+module.exports  = app;
