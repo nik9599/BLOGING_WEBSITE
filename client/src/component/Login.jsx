@@ -2,7 +2,7 @@ import { Box, TextField, Button, styled, Typography } from "@mui/material";
 import BackgroundImage from "../IMage/Tech Bloger.png";
 import { useState, useContext } from "react";
 import { API } from "../services/api.js";
-
+import {logginUser} from "../utils/fetch.ja"
 import { DataContext } from "../context/DataProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -109,10 +109,11 @@ const Login = ({ isUserAuthenticated }) => {
   };
 
   const loginUser = async () => {
-    let response = await API.userLogin(login);
-   
-    console.log(response.isSuccess);
-    if (response.isSuccess) {
+    // let response = await API.userLogin(login);
+     let r = await logginUser(login);
+    // console.log(response.isSuccess);
+    // if (response.isSuccess) {
+      if(r){
       setError("");
       sessionStorage.setItem(
         "accessToken",
