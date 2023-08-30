@@ -109,11 +109,11 @@ const Login = ({ isUserAuthenticated }) => {
   };
 
   const loginUser = async () => {
-    // let response = await API.userLogin(login);
-     let response = await logginUser(login);
+    let response = await API.userLogin(login);
+    //  let response = await logginUser(login);
     // console.log(response.isSuccess);
     // if (response.isSuccess) {
-    if(response){
+    if(response.isSuccess){
       setError("");
       sessionStorage.setItem(
         "accessToken",
