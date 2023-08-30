@@ -12,7 +12,7 @@ connection();
 //setting up routes
 
 const allowedOrigins = [
-  'https://bloging-website-client.vercel.app',
+  'https://bloging-website-client.vercel.app/login',
   'http://localhost:3000'
 ];
 
