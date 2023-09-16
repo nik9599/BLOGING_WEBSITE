@@ -1,7 +1,6 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -21,6 +20,8 @@
     "mongoose": "^7.1.0",
     "morgan": "^1.10.0",
     "multer-gridfs-storage": "^5.0.2",
+    "node": "^20.6.0",
     "nodemon": "^2.0.22"
-  }
+  },
+  "description": ""
 }
