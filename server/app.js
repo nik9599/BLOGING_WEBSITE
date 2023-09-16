@@ -11,11 +11,11 @@ connection();
 
 
 const corsOptions = {
-  origin: 'https://bloging-website-client.vercel.app/',
+  origin: 'https://bloging-website-client.vercel.app', // or [/^https:\/\/bloging-website-client\.vercel\.app$/] or (origin, callback) => { ... }
 };
 
+// Use the cors middleware with the origin option
 app.use(cors(corsOptions));
-
 app.use(morgan("dev"));
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
