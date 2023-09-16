@@ -11,7 +11,7 @@ connection();
 
 
 const corsOptions = {
-  origin: 'https://bloging-website-client.vercel.app',
+  origin: 'https://bloging-website-client.vercel.app/',
 };
 
 app.use(cors(corsOptions));
