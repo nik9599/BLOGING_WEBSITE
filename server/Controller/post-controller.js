@@ -17,6 +17,7 @@ export const getAllPost = async (req, res) => {
 
   try {
     if (category) {
+      //finding post by category
       posts = await Post.find({ categories: category });
     } else {
       posts = await Post.find({});
@@ -29,7 +30,9 @@ export const getAllPost = async (req, res) => {
 };
 
 export const getPost = async (req, res) => {
+
   try {
+    //finding post by id
     const post = await Post.findById(req.params.id);
 
     return res.status(200).json(post);
@@ -40,6 +43,7 @@ export const getPost = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   try {
+   
     const post = await Post.findById(req.params.id);
 
     if (!post) {

@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 
 import { useLocation , useNavigate } from "react-router-dom";
 
+import {uploadFile,createPost} from "../../fetch.js"
+
 import {
   Box,
   styled,
@@ -11,9 +13,8 @@ import {
   TextareaAutosize,
 } from "@mui/material";
 import { AddCircle as Add } from "@mui/icons-material";
-
 import { DataContext } from "../../context/DataProvider";
-import { API } from "../../services/api";
+
 
 const StyledImage = styled("img")({
   width: "100%",
@@ -83,8 +84,9 @@ const CreatPost = () => {
 
         //API calling
 
-        const response = await API.uploadFile(data);
-
+        
+        const response =  await uploadFile(data);
+        
         post.picture = response.data;
         
       }
@@ -101,9 +103,10 @@ const CreatPost = () => {
   };
 
   const savePost = async()=>{
-      const resposne = await API.createPost(post)
+     // saving new post
+      const response = await createPost(post)
       
-      if(resposne.isSuccess){
+      if(response){
         navigate('/');
       }
 }

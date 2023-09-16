@@ -2,9 +2,7 @@ import { useEffect, useState, useContext } from "react";
 
 import { Box, Typography, styled } from "@mui/material";
 
-import { useParams  ,Link , useNavigate} from "react-router-dom";
-
-import { API } from "../../services/api.js";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -12,15 +10,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { DataContext } from "../../context/DataProvider.jsx";
 
-import Comment from './comments/Comments.jsx';
+import Comment from "./comments/Comments.jsx";
 
-const Container = styled(Box)(({theme})=>({
-  margin: '70px 100px',
-  [theme.breakpoints.down('md')]:{
-    margin : 0
-  }
+import { getPostById, deletePostRequest } from "../../fetch.js";
+
+const Container = styled(Box)(({ theme }) => ({
+  margin: "70px 100px",
+  [theme.breakpoints.down("md")]: {
+    margin: 0,
+  },
 }));
- 
 
 const Image = styled("img")({
   width: "100%",
@@ -33,7 +32,7 @@ const Heading = styled(Typography)`
   font-weight: 600;
   text-align: center;
   margin: 50px 0 10px 0;
-  word-break : break-word;
+  word-break: break-word;
 `;
 
 const Editicon = styled(EditIcon)`
@@ -55,10 +54,9 @@ const Author = styled(Box)`
   display: flex;
 `;
 
-const Description = styled (Typography)`
-word-break : break-word;
- `
-
+const Description = styled(Typography)`
+  word-break: break-word;
+`;
 
 const DetailView = () => {
   const [post, setPost] = useState({});
@@ -69,29 +67,31 @@ const DetailView = () => {
 
   const Navigate = useNavigate();
 
-
   const url =
     "https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80";
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await API.getPostById(id);
-      if (response.isSuccess) {
+      const response = await getPostById(id);
+
+      if (response) {
         setPost(response.data);
       }
     };
     fetchData();
   }, []);
 
+  const deletePost = async () => {
+    try {
+      const res = await deletePostRequest(post._id);
 
-  const deletPost = async()=>{
-        const res = await API.deletPost(post._id);
-
-        if(res.isSuccess){
-           Navigate('/')
-        }
-
-  }
+      if (res) {
+        Navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container>
@@ -101,10 +101,10 @@ const DetailView = () => {
         {account.username === post.username && (
           <>
             {" "}
-            <Link to={`/update/${post._id}`} >
-            <Editicon color="primary" />
+            <Link to={`/update/${post._id}`}>
+              <Editicon color="primary" />
             </Link>
-            <Deleticon onClick={()=>deletPost()}  color="error" />
+            <Deleticon onClick={() => deletePost()} color="error" />
           </>
         )}
       </Box>
@@ -114,15 +114,21 @@ const DetailView = () => {
       <Author>
         <Typography>
           {" "}
-          Author : <Box  component={'sapn'} style={{ fontWeight : 600  }} > {post.name} </Box>
+          Author :{" "}
+          <Box component={"sapn"} style={{ fontWeight: 600 }}>
+            {" "}
+            {post.name}{" "}
+          </Box>
         </Typography>
-        <Typography style={{ marginLeft : 'auto' }} > {new Date(post.createdDate).toDateString()} </Typography>
+        <Typography style={{ marginLeft: "auto" }}>
+          {" "}
+          {new Date(post.createdDate).toDateString()}{" "}
+        </Typography>
       </Author>
 
-      <Description >{post.descritption}</Description>
+      <Description>{post.descritption}</Description>
 
-     <Comment post = {post} />
-
+      <Comment post={post} />
     </Container>
   );
 };

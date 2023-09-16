@@ -1,10 +1,11 @@
 import { Box, TextField, Button, styled, Typography } from "@mui/material";
 import BackgroundImage from "../IMage/Tech Bloger.png";
 import { useState, useContext } from "react";
-import { API } from "../services/api.js";
-import {logginUser} from "../fetch.js"
+
+import { logginUser, siggnupUser } from "../fetch.js";
 import { DataContext } from "../context/DataProvider";
 import { useNavigate } from "react-router-dom";
+import { setHeaders, getAccessToken } from "../utils/common-function.js";
 
 const Component = styled(Box)`
   width: 400px;
@@ -97,9 +98,10 @@ const Login = ({ isUserAuthenticated }) => {
   };
 
   const signUpUser = async () => {
-    let response = await API.userSignup(signup);
     
-    if (response.isSuccess) {
+    let response = await siggnupUser(signup);
+
+    if (response) {
       setError("");
       setSignUp(UserData);
       toggelAccount("login");
@@ -109,11 +111,9 @@ const Login = ({ isUserAuthenticated }) => {
   };
 
   const loginUser = async () => {
-    let response = await API.userLogin(login);
-    //  let response = await logginUser(login);
-    // console.log(response.isSuccess);
-    // if (response.isSuccess) {
-    if(response.isSuccess){
+    let response = await logginUser(login);
+
+    if (response) {
       setError("");
       sessionStorage.setItem(
         "accessToken",
@@ -123,7 +123,7 @@ const Login = ({ isUserAuthenticated }) => {
         "refreshToken",
         `Bearer ${response.data.refreshToken}`
       );
-
+      setHeaders(getAccessToken());
       setAccount({
         username: response.data.username,
         name: response.data.name,

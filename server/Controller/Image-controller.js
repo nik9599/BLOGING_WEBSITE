@@ -1,8 +1,8 @@
 import grid from "gridfs-stream";
 import mongoose, { mongo } from "mongoose";
 
-const url = "http://localhost:5000";
-
+const url = "http://localhost:8080";
+// const url = "https://bloging-website-api.vercel.app";
 const con = mongoose.connection;
 
 let gfs, gridfsBucket;

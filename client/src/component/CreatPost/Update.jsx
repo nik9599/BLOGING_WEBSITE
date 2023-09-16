@@ -13,7 +13,8 @@ import {
 import { AddCircle as Add } from "@mui/icons-material";
 
 import { DataContext } from "../../context/DataProvider";
-import { API } from "../../services/api";
+
+import { getPostById, uploadFile, updatePost } from "../../fetch";
 
 const StyledImage = styled("img")({
   width: "100%",
@@ -21,11 +22,11 @@ const StyledImage = styled("img")({
   objectFit: "cover",
 });
 
-const Container = styled(Box)(({theme})=>({
-  margin: '70px 100px',
-  [theme.breakpoints.down('md')]:{
-    margin : 0
-  }
+const Container = styled(Box)(({ theme }) => ({
+  margin: "70px 100px",
+  [theme.breakpoints.down("md")]: {
+    margin: 0,
+  },
 }));
 
 const StyledFormControl = styled(FormControl)`
@@ -78,8 +79,8 @@ const Update = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await API.getPostById(id);
-      if (res.isSuccess) {
+      const res = await getPostById(id);
+      if (res) {
         setPost(res.data);
       }
     };
@@ -96,8 +97,7 @@ const Update = () => {
 
         //API calling
 
-        const response = await API.uploadFile(data);
-
+        const response = await uploadFile(data);
         post.picture = response.data;
       }
     };
@@ -112,9 +112,9 @@ const Update = () => {
   };
 
   const updateBlogPost = async () => {
-    const resposne = await API.updatePost(post);
+    const resposne = await updatePost(post, id);
 
-    if (resposne.isSuccess) {
+    if (resposne) {
       navigate(`/details/${id}`);
     }
   };

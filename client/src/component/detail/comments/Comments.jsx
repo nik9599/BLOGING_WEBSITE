@@ -3,7 +3,9 @@ import { useState, useContext, useEffect } from "react";
 import { Box, Button, TextareaAutosize, styled } from "@mui/material";
 
 import { DataContext } from "../../../context/DataProvider";
-import { API } from "../../../services/api";
+
+
+import {getAllComents,newComment} from "../../../fetch.js"
 
 //component
 
@@ -43,8 +45,9 @@ const Comments = ({ post }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await API.getAllComents(post._id);
-      if (res.isSuccess) {
+      // fetching all the comments
+      const res = await getAllComents(post._id)
+      if (res) {
         setComments(res.data);
         console.log(comments);
       }
@@ -64,9 +67,10 @@ const Comments = ({ post }) => {
   };
 
   const AddComment = async () => {
-    const resposne = await API.newComment(comment);
+   // adding new comment
+    let resposne =  await newComment(comment)
 
-    if (resposne.isSuccess) {
+    if (resposne) {
       setComment(initialValues);
     }
 
