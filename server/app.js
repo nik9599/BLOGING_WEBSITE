@@ -9,24 +9,12 @@ const app = express();
 
 connection();
 
-//setting up routes
 
-// const allowedOrigins = [
-//   'https://bloging-website-client.vercel.app/login',
-//   'http://localhost:3000'
-// ];
+const corsOptions = {
+  origin: 'https://bloging-website-client.vercel.app',
+};
 
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     if (allowedOrigins.includes(origin) || !origin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   }
-// }));
-
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(morgan("dev"));
 app.use(bodyParser.json({ extended: true }));
