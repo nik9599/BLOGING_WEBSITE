@@ -25,7 +25,9 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-
+app.get('/welcome',()=>{
+  window.alert('getted')
+})
 app.use("/", Routes);
 
 
