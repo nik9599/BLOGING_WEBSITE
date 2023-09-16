@@ -11,20 +11,22 @@ connection();
 
 //setting up routes
 
-const allowedOrigins = [
-  'https://bloging-website-client.vercel.app/login',
-  'http://localhost:3000'
-];
+// const allowedOrigins = [
+//   'https://bloging-website-client.vercel.app/login',
+//   'http://localhost:3000'
+// ];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}));
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (allowedOrigins.includes(origin) || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// }));
+
+app.use(cors());
 
 app.use(morgan("dev"));
 app.use(bodyParser.json({ extended: true }));
@@ -39,10 +41,5 @@ app.use((req, res, next) => {
 app.use("/", Routes);
 
 
-// const Port = process.env.PORT || 5000;
-
-// app.listen(Port, () => {
-//   console.log("Server intialise properly");
-// });
 
 export default app;
