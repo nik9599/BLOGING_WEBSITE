@@ -2,9 +2,9 @@ import axios from "axios";
 import { getAccessToken } from "./utils/common-function.js";
 
 
-const base = "https://bloging-website-api.vercel.app";
+// const base = "https://bloging-website-api.vercel.app";
 
-// const base = "http://localhost:8080";
+const base = "http://localhost:8080";
 //login user api calling
 export const logginUser = async (data) => {
   try {

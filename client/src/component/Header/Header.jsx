@@ -25,7 +25,7 @@ const Header = ()=>{
             <Link to='/' >Home</Link>
             <Link to='about' >About</Link>
             <Link to='/contact'>Contact</Link>
-            <Link to='/login'>LOGOUT</Link>
+            <Link to='/login'onClick={()=>window.sessionStorage.clear()}>LOGOUT</Link>
         </Container>
        </Component>
     )

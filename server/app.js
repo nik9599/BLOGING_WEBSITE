@@ -10,12 +10,14 @@ const app = express();
 connection();
 
 
-const corsOptions = {
-  origin: 'https://bloging-website-client.vercel.app', // or [/^https:\/\/bloging-website-client\.vercel\.app$/] or (origin, callback) => { ... }
-};
+// const corsOptions = {
+//   origin: 'https://bloging-website-client.vercel.app', // or [/^https:\/\/bloging-website-client\.vercel\.app$/] or (origin, callback) => { ... }
+//   origin: 'http://localhost:3000/'
+// };
 
-// Use the cors middleware with the origin option
-app.use(cors(corsOptions));
+// // Use the cors middleware with the origin option
+// app.use(cors(corsOptions));
+app.use(cors())
 app.use(morgan("dev"));
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));

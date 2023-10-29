@@ -131,7 +131,7 @@ const CreatPost = () => {
           onChange={(e) => handelChange(e)}
           name="title"
         />
-        <Button variant="contained" onClick={()=> savePost()} >PUBLISH</Button>
+        <Button variant="contained" onClick={()=> savePost()  } >PUBLISH</Button>
       </StyledFormControl>
 
       <TextArea

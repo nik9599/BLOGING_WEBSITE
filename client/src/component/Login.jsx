@@ -64,6 +64,7 @@ const Error = styled(Typography)`
 const UserData = {
   name: "",
   username: "",
+  email:"",
   password: "",
 };
 
@@ -177,6 +178,12 @@ const Login = ({ isUserAuthenticated }) => {
               onChange={(e) => onInputChange(e)}
               name="username"
               label="Enter Username"
+            />
+            <TextField
+              variant="standard"
+              onChange={(e) => onInputChange(e)}
+              name="email"
+              label="Enter email"
             />
             <TextField
               variant="standard"
