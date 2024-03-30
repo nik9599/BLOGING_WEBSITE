@@ -21,8 +21,8 @@ Routes.post("/login", loginUser);
 Routes.post('/file/upload', upload.single('file'), uploadImage);
 Routes.get('/file/:filename', getImage)
 Routes.post('/create' ,authenticateToken, creatPost)
-Routes.get('/posts' , authenticateToken , getAllPost)
-Routes.get('/post/:id' , authenticateToken , getPost)
+Routes.get('/posts'  , getAllPost)
+Routes.get('/post/:id' , getPost)
 Routes.put('/update/:id' , authenticateToken , updatePost)
 Routes.delete('/delet/:id' , authenticateToken , deletPost)
 Routes.post('/comment/new' , authenticateToken , newComment)

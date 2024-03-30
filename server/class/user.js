@@ -14,7 +14,7 @@ class UserData {
     this.password = await bcrypt.hash(this.password, 10);
   }
 
-  validatePassword() {
+  checkPassword() {
     // Check for at least one character
     const hasCharacter = /[a-zA-Z]/.test(this.password);
 

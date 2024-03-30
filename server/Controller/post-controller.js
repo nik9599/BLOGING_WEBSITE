@@ -1,69 +1,62 @@
-import Post from "../model/post.js";
+import PostService from "../class/post.js";
+
+const postService = new PostService();
+
+
+// creating new psot
 
 export const creatPost = async (req, res) => {
   try {
-    const post = await new Post(req.body);
-    post.save();
-    return res.status(200).json("Post Saved Succesfully");
+    const result = await postService.createPost(req.body);
+    return res.status(200).json(result);
   } catch (error) {
-    return res.status(500).json(error);
+    return res.status(500).json(error.message);
   }
 };
+
+//fetching all the post
 
 export const getAllPost = async (req, res) => {
   let category = req.query.category;
 
-  let posts;
-
   try {
-    if (category) {
-      //finding post by category
-      posts = await Post.find({ categories: category });
-    } else {
-      posts = await Post.find({});
-    }
-
+    const posts = await postService.getAllPosts(category);
     return res.status(200).json(posts);
   } catch (error) {
-    return res.status(500).json({ msg: error.message });
+    return res.status(500).json(error.message);
   }
 };
+
+// geting post by id
 
 export const getPost = async (req, res) => {
-
   try {
-    //finding post by id
-    const post = await Post.findById(req.params.id);
-
+    const post = await postService.getPostById(req.params.id);
     return res.status(200).json(post);
   } catch (error) {
-    return res.status(500).json({ msg: error.message });
+    return res.status(500).json(error.message);
   }
 };
+
+// updateing the post
 
 export const updatePost = async (req, res) => {
   try {
-   
-    const post = await Post.findById(req.params.id);
-
-    if (!post) {
-      return res.status(404).json({ msg: "Post Not Found" });
-    }
-
-    await Post.findByIdAndUpdate(req.params.id, { $set: req.body });
-
-    return res.status(200).json({ msg: "Post Updated succesfully" });
+    const result = await postService.updatePost(req.params.id, req.body);
+    return res.status(200).json(result);
   } catch (error) {
-    return res.status(500).json({ msg: error.message });
+    return res.status(500).json(error.message);
   }
 };
 
+
+// deleting the post
+
 export const deletPost = async (req, res) => {
   try {
-    const post = await Post.findByIdAndDelete({ _id: req.params.id });
-
-    return res.status(200).json({ msg: "Post Deleted successfully" });
+    const result = await postService.deletePost(req.params.id);
+    return res.status(200).json(result);
   } catch (error) {
-    return res.status(500).json({ msg: error.message });
+    return res.status(500).json(error.message);
   }
 };

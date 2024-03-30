@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import UserData from "../class/user.js";
 import User from "../model/user.js";
@@ -20,7 +19,7 @@ export const signUpUser = async (req, res) => {
 
     //checking password
 
-    if (!userData.validatePassword()) {
+    if (!userData.checkPassword()) {
       return res.status(401).json({
         msg: "Password should have at least one number and one special character",
       });
