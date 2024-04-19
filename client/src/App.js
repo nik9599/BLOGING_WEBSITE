@@ -1,12 +1,12 @@
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SkeletonTheme } from "react-loading-skeleton";
-import LandingPage from "./Component/Pages/LandingPage/LandingPage";
-import ViewPage from "./Component/Pages/DetailPage/ViewPage";
-import CreateBlog from "./Component/Pages/CreatePage/CreateBlog";
-import LoginPage from "./Component/Pages/LoginPage/LoginPage";
-import SignUpPage from "./Component/Pages/SignUpPage/SignUpPage";
-import Profile from "./Component/Pages/Profile/Profile";
+import LandingPage from "./Component/Pages/LandingPage/LandingPage.jsx";
+import ViewPage from "./Component/Pages/DetailPage/ViewPage.jsx";
+import CreateBlog from "./Component/Pages/CreatePage/CreateBlog.jsx";
+import LoginPage from "./Component/Pages/LoginPage/LoginPage.jsx";
+import SignUpPage from "./Component/Pages/SignUpPage/SignUpPage.jsx";
+import Profile from "./Component/Pages/Profile/Profile.jsx";
 
 function App() {
   return (
