@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "../../../../index.css";
+import { Link } from "react-router-dom";
 
 export default function DropDown() {
   const [active, setActive] = useState(false);
@@ -29,17 +30,17 @@ export default function DropDown() {
         <div className="absolute right-0 bg-white  w-[2000%] rounded-lg top-10  flex flex-col justify-center items-center shadow-xl ">
           {!isUserLoggedIn && (
             <div className="h-10 flex  w-[100%] justify-center align-middle ">
-              {" "}
-              LogIn{" "}
+              
+              LogIn
             </div>
           )}
           <div className="h-10 flex  w-[100%] justify-center align-middle ">
             {" "}
             Home{" "}
           </div>
-          <div className="h-10 flex  w-[100%] justify-center align-middle ">
+            <div className="h-10 flex  w-[100%] justify-center align-middle ">
             {" "}
-            Create{" "}
+            <Link to="/createPost" >Create </Link> {" "}
           </div>
           <div className="h-10 flex  w-[100%] justify-center align-middle ">
             {" "}
