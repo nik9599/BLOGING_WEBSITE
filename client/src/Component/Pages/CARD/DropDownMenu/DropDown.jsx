@@ -31,12 +31,12 @@ export default function DropDown() {
           {!isUserLoggedIn && (
             <div className="h-10 flex  w-[100%] justify-center align-middle ">
               
-              LogIn
+               <Link to={"/login"} > LogIn</Link>
             </div>
           )}
           <div className="h-10 flex  w-[100%] justify-center align-middle ">
             {" "}
-            Home{" "}
+           <Link to="/" > Home{" "}</Link>
           </div>
             <div className="h-10 flex  w-[100%] justify-center align-middle ">
             {" "}
