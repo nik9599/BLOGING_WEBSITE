@@ -1,20 +1,92 @@
 import React from "react";
-import TechBloger from "../../Image/TechBloger.png";
-import "../../../index.css";
-import DropDown from "../CARD/DropDownMenu/DropDown.jsx";
-import {useNavigate} from "react-router-dom"
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button, User} from "@nextui-org/react";
+// import {AcmeLogo} from "./AcmeLogo.jsx";
+import TechBlogger from "../../Image/TechBloger.png"
 
 export default function NavBar() {
-  const screenWidth = window.screen.width;
-  const navigator = useNavigate()
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
 
   return (
-    <div className="flex w-[100%] h-[50px] justify-between align-top ">
-      <div className="w-[50%]  flex justify-start align-top ml-5 mt-2 " onClick={()=>{navigator('/')}} >
-        {" "}
-        <img src={TechBloger} width={"100px"} height={"30px"} alt="logo" />{" "}
-      </div>
-      <div className="w-[50%] flex justify-end align-top mr-7 mt-4  " >{screenWidth < 600 ? <DropDown /> : <div> </div>}</div>
-    </div>
+    <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="full">
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        <NavbarBrand>
+           <img src={TechBlogger} height={"10px"} width={"100px"} style={{marginRight:"5px"}} />
+          <p className="font-bold text-inherit">Tech Bloger</p>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Features
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="#" aria-current="page">
+            Customers
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="#">Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          {true ?    
+            <User   
+                name="Junior Garcia"
+                description={(
+                  <Link href="https://twitter.com/jrgarciadev" size="sm" isExternal>
+                    @jrgarciadev
+                  </Link>
+                )}
+                avatarProps={{
+                  src: "https://avatars.githubusercontent.com/u/30373425?v=4"
+                }}
+              /> : <Button as={Link} color="primary" href="#" variant="flat">
+            Sign Up
+          </Button>}
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+              }
+              className="w-full lg:hidden"
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   );
 }
+

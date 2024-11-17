@@ -7,9 +7,12 @@ export default function LandingPage() {
        // get Request
   },[])
   return (
-    <div className='' >
-      <div><NavBar/></div>
-      <div className='grid grid-cols-1 gap-4 ' >
+    <div className='w-full' >
+      <div className='w-full'><NavBar/></div>
+      <div className='w-full h-[80vh] bg-slate-500' >
+         BRING YOUR IDEA 
+      </div>
+      <div className='grid grid-cols-1 gap-4 lg:grid-cols-4 ml-10 ' >
 
         <DisplayCard/>
         <DisplayCard/>
