@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <SkeletonTheme baseColor="#ded9d9" highlightColor="#bdbbbb">
-        <div className="App">
+        <div className="App bg-black text-white">
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route exact path="/viewPage/:postId" element={<ViewPage />} />

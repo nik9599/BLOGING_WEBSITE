@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button, User} from "@nextui-org/react";
-// import {AcmeLogo} from "./AcmeLogo.jsx";
 import TechBlogger from "../../Image/TechBloger.png"
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const menuItems = [
+    "Create Post",
     "Profile",
     "Dashboard",
     "Activity",
@@ -20,45 +37,51 @@ export default function NavBar() {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="full">
+    <Navbar 
+      onMenuOpenChange={setIsMenuOpen} 
+      maxWidth="full"
+      className={`fixed top-0 transition-colors duration-300 ${
+        isScrolled ? 'bg-black text-white' : 'bg-transparent'
+      }`}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
-           <img src={TechBlogger} height={"10px"} width={"100px"} style={{marginRight:"5px"}} />
-          <p className="font-bold text-inherit">Tech Bloger</p>
+           <img src={TechBlogger} height={"10px"} width={"100px"} style={{marginRight:"5px"}} alt="Tech Blogger Logo" />
+          <p className={`font-bold text-inherit ${isScrolled ? 'text-white' : 'text-black'}`}>Tech Bloger</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
+          <Link color={isScrolled ? "foreground" : "foreground-800"} href="/createPost">
+            Create Post
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
+          <Link href="#" aria-current="page" className={ 'text-white' }>
             Customers
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color={isScrolled ? "foreground" : "foreground-800"} href="#">
             Integrations
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Link href="#" className={'text-white' }>Login</Link>
         </NavbarItem>
         <NavbarItem>
           {true ?    
             <User   
                 name="Junior Garcia"
                 description={(
-                  <Link href="https://twitter.com/jrgarciadev" size="sm" isExternal>
+                  <Link href="https://twitter.com/jrgarciadev" size="sm" isExternal className={'text-white'}>
                     @jrgarciadev
                   </Link>
                 )}
