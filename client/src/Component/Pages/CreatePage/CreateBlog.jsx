@@ -1,55 +1,63 @@
-import React, {useState } from "react";
+import React from "react";
 import NavBar from "../NavBar/NavBar";
-import TechBloger from "../../Image/TechBloger.png"
-import {Form, Field} from "react-final-form"
-import JoditEditorModule from "./JoditEditorModule.jsx";
+import { Form, Field } from "react-final-form";
 
-export default function CreateBlog() {
-  const [content, setContent] = useState("");
+const CreateBlog = () => {
+  const onSubmit = (values) => {
+    console.log("Form submitted with values:", values);
+  };
+
   return (
-    <div className="bg-black" >
-      <div>
-        <NavBar />
-      </div>
-      <div className="pl-5 pr-5" >
+    <div className="bg-black min-h-screen text-white">
+      {/* Navbar */}
+      <NavBar />
+
+      {/* Form */}
+      <div className="p-5">
         <Form
-        onSubmit={()=>{}}
-        render={({handleSubmit,form, submitting, pristine, values})=>{
-          return(
-            <form className=" bg-black" >
-            <div className="flex flex-col pt-16" >
-              <label className="text-2xl font-bold " >Tittle</label>
-              <input className="border border-slate-400 p-2 rounded-md text-lg "  type="text" placeholder="Enter the Tittle" />
-            </div>
-            <div className="flex flex-col mt-5 " >
-              <label className="text-2xl font-bold " >Intro</label>
-              <input  className="border border-slate-400 p-2 rounded-md text-lg " type="text" placeholder="enter the intro" />
-            </div>
-            <div className="flex flex-col mt-5" >
-              <div> <img src={TechBloger} className="h-38"/></div>
-              <div className="h-10 mt-4 " >
-                <label htmlFor="imageUpload" className="border mt-2  bg-blue-500 text-white p-2 rounded-md font-bold "  >Upload Image</label>
-                <input type="file" id="imageUpload"  className="hidden" />
-              </div>
-            </div>
-            <div>
-              <div></div>
-              <div className="flex flex-col " >
-                <label className="text-2xl font-bold " >Tag</label>
-                <input className="border border-slate-400 p-2 rounded-md text-lg mt-2 "  type="text" />
-              </div>
-            </div>
-  
-            <div className="mt-10 mb-20">
-              <label className="text-2xl font-bold"  >Content</label>
-            <JoditEditorModule value={content} onChange={setContent} />
-            </div>
-          </form>
-          )
-        }}
+          onSubmit={onSubmit}
+          render={({ handleSubmit, form, submitting, pristine, values }) => (
+            <form
+              className="bg-gray-800 p-5 rounded-md"
+              onSubmit={handleSubmit}
+            >
+              {/* Title Field */}
+              <Field
+                name="title"
+                validate={(value) => (value ? undefined : "Required")}
+              >
+                {({ input, meta }) => (
+                  <div className="mb-4">
+                    <label className="block mb-2 text-sm font-medium">
+                      Title
+                    </label>
+                    <input
+                      {...input}
+                      type="text"
+                      placeholder="Enter blog title"
+                      className="w-full p-2 border border-gray-600 rounded-md bg-gray-700 text-white"
+                    />
+                    {meta.touched && meta.error && (
+                      <span className="text-red-500 text-sm">{meta.error}</span>
+                    )}
+                  </div>
+                )}
+              </Field>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={submitting || pristine}
+                className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md disabled:opacity-50"
+              >
+                Submit
+              </button>
+            </form>
+          )}
         />
-  
       </div>
     </div>
   );
-}
+};
+
+export default CreateBlog;

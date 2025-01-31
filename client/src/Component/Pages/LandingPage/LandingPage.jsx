@@ -1,12 +1,10 @@
-import React, {useEffect} from 'react'
+import React  from 'react'
 import NavBar from '../NavBar/NavBar';
 import DisplayCard from '../CARD/DisplayCard/DisplayCard';
 import Banner from "../../Image/Banner.jpeg"
 
 export default function LandingPage() {
-  useEffect(()=>{
-       // get Request
-  },[])
+
   return (
     <div className="w-full min-h-screen bg-black">
       <NavBar/>
